@@ -20,6 +20,6 @@ const App = () => {
       <Button title="Button" onPress={() => Alert.alert('Button Clicked')} />
     </View>
   );
-}
+};
 
 export default App;
