@@ -9,7 +9,7 @@ const App = () => {
     if (viewRef.current) {
       viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress();
       console.log(viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress);
-    };
+    }
   }, []);
 
   return (
