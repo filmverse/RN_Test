@@ -1,25 +1,40 @@
 import React from 'react';
-import {useRef, useEffect} from 'react';
-import {Text, Button, View, Alert} from 'react-native';
+import {SafeAreaView, View, StyleSheet, Button, Text, Alert} from 'react-native';
+import {useEffect, useRef} from 'react';
 
 const App = () => {
-  const testBtn = useRef();
+  const viewRef = useRef(null);
+
   useEffect(() => {
-    if (testBtn.current) {
-      testBtn.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress();
-      console.log(
-        'Working',
-        testBtn.current._internalFiberInstanceHandleDEV.memoizedProps.children[1].props.onPress
-      );
-    }
+    if (viewRef.current) {
+      viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress();
+      console.log(viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress);
+    };
   }, []);
 
   return (
-    <View ref={testBtn}>
-      <Text>Auto calling Button</Text>
-      <Button title="Button" onPress={() => Alert.alert('Button Clicked')} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View ref={viewRef}>
+        <Text style={styles.title}>This is just a text.</Text>
+        <Button
+          title="Pop-Up Button"
+          onPress={() => Alert.alert('Hello Vikas')}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+});
 
 export default App;
