@@ -1,4 +1,3 @@
-import {View} from 'react-native';
 import OldApp from './components/OldApp';
 
 const App = () => {
