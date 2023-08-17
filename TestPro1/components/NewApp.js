@@ -1,16 +1,28 @@
-import React from 'react';
 import {SafeAreaView, View, StyleSheet, ToastAndroid, Button, Text, Alert} from 'react-native';
-import {useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 const NewApp = () => {
   const viewRef = useRef(null);
   const btnRef = useRef(null);
 
   useEffect(() => {
+    ToastAndroid.show(`123`, ToastAndroid.LONG)
+    console.log(viewRef);
     if (viewRef.current) {
-      ToastAndroid.show(`${viewRef.current}`, ToastAndroid.LONG)
-      // viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress();
-      console.log(viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress);
+      ToastAndroid.show(`Hello`, ToastAndroid.LONG)
+      try {
+          viewRef.current._internalFiberInstanceHandleDEV.memoizedProps.children[1].props.onPress();
+         } catch (error) {
+          ToastAndroid.show(`${error}`, ToastAndroid.LONG);
+         }
+      if (viewRef.current._internalFiberInstanceHandleDEV) {
+         ToastAndroid.show(`Hello Nested`, ToastAndroid.LONG)
+         if (viewRef.current._internalFiberInstanceHandleDEV.memoizedProps) {
+          ToastAndroid.show(`Hello Nested again`, ToastAndroid.LONG)
+          viewRef.current._internalFiberInstanceHandleDEV.memoizedProps.children[1].props.onPress();
+         }
+      }
+      // console.log(viewRef.current._internalFiberInstanceHandleDEV.pendingProps.children[1].props.onPress);
     }
   }, []);
 
