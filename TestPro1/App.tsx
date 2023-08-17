@@ -1,7 +1,8 @@
-import OldApp from './components/OldApp';
+import NewApp from './components/NewApp';
+// import OldApp from './components/OldApp';
 
 const App = () => {
-  return <OldApp />;
+  return <NewApp />;
 };
 
 export default App;
