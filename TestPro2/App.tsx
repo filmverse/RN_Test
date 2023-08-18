@@ -4,7 +4,7 @@ import {SafeAreaView, View, StyleSheet, Text, TextInput, Button, Alert} from 're
 const Separator = () => <View style={styles.separator} />;
 
 const App = () => {
-  const [text, onChangeText] = React.useState('Text');
+  const [query, setQuery] = React.useState('Text');
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -12,8 +12,8 @@ const App = () => {
         <Separator />
         <TextInput
           style={styles.input}
-          onChangeText={text => onChangeText(text)}
-          value={text}
+          onChangeText={text => setQuery(text)}
+          value={query}
         />
         <Separator />
         <Button title="Button1" onPress={() => Alert.alert('Test Button1')} />
