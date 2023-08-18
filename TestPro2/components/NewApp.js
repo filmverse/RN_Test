@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -49,6 +49,21 @@ const NewApp = () => {
       />
     );
   };
+
+  useEffect(() => {
+    const delay = 1000; // 1 second delay for each item press
+
+    const simulatePressForItems = () => {
+      DATA.forEach((item, index) => {
+        setTimeout(() => {
+          setSelectedId(item.id);
+        //   Item({item: item});
+        }, index * delay);
+      });
+    };
+
+    simulatePressForItems();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
