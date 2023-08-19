@@ -18,7 +18,9 @@ const DATA = [
 
 const Item = ({title}) => (
   <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+    <Pressable onPress={() => Alert.alert(`${title.id}`)}>
+      <Text style={styles.title}>{title.title}</Text>
+    </Pressable>
   </View>
 );
 
@@ -27,7 +29,7 @@ const NewApp = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text style={styles.title}>Flat List Example</Text>
-        <FlatList data={DATA} renderItem={({item}) => <Item title={item.title} />} keyExtractor={item => item.title} />
+        <FlatList data={DATA} renderItem={({item}) => <Item title={item} />} keyExtractor={item => item.title} />
       </View>
     </SafeAreaView>
   );
