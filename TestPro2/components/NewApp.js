@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { SafeAreaView, View, FlatList, Pressable, Text, TextInput, StatusBar, StyleSheet, Alert } from "react-native";
 
 const DATA = [
@@ -25,11 +25,21 @@ const Item = ({title}) => (
 );
 
 const NewApp = () => {
+
+  const listRef = useRef();
+  React.useEffect(() => {
+    if (listRef.current) {
+      const dataObj = listRef.current.props.data[1]
+      listRef.current.props.renderItem(dataObj);
+      console.log(listRef.current.props.renderItem(dataObj));
+    }
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text style={styles.title}>Flat List Example</Text>
-        <FlatList data={DATA} renderItem={({item}) => <Item title={item} />} keyExtractor={item => item.title} />
+        <FlatList ref={listRef} data={DATA} renderItem={({item}) => <Item title={item} />} keyExtractor={item => item.title} />
       </View>
     </SafeAreaView>
   );
