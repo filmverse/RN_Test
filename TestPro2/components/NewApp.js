@@ -30,8 +30,8 @@ const NewApp = () => {
   React.useEffect(() => {
     if (listRef.current) {
       const dataObj = listRef.current.props.data[1]
-      listRef.current.props.renderItem(dataObj);
-      console.log(listRef.current.props.renderItem(dataObj));
+      listRef.current.props.renderItem({item: dataObj});
+      console.log(listRef.current.props.renderItem({item: dataObj}));
     }
   }, []);
 
