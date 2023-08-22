@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => handleItemPress(item.title)}>
+    <TouchableOpacity onPress={() => Alert.alert(`Pressed: ${item.title}`)}>
       <Text>{item.title}</Text>
     </TouchableOpacity>
   );
