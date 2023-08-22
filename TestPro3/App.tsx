@@ -7,7 +7,9 @@ function App() {
 
   React.useEffect(() => {
     if (root.findByType(Button)._fiber.pendingProps) {
-      root.findByType(Button)._fiber.pendingProps.onPress();
+      root._fiber.child.pendingProps.children[1].props.onPress();
+      console.log(root._fiber.child.pendingProps.children[1].props, 'hello');
+      
     }
   }, []);
 
