@@ -23,7 +23,7 @@ function App() {
     if (root.findByType(Button)._fiber.pendingProps) {
       root._fiber.child.pendingProps.children[1].props.onPress();
       console.log(root._fiber.child.pendingProps.children[1].props, 'hello');
-      console.log(root._fiber.child.pendingProps.children[2].props, 'more data regarding flatlist');
+      console.log(root._fiber.child.pendingProps.children[2].props.data[1], 'more data regarding flatlist');
       
     }
   }, []);
