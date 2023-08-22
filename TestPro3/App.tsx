@@ -23,7 +23,9 @@ function App() {
     if (root.findByType(Button)._fiber.pendingProps) {
       root._fiber.child.pendingProps.children[1].props.onPress();
       console.log(root._fiber.child.pendingProps.children[1].props, 'hello');
-      console.log(root._fiber.child.pendingProps.children[2].props, 'more data regarding flatlist');
+      const dataProp = root._fiber.child.pendingProps.children[2].props.data[1];
+      root._fiber.child.pendingProps.children[2].props.renderItem({item: dataProp}).props.onPress();
+      console.log(root._fiber.child.pendingProps.children[2].props.renderItem({item: dataProp}), 'more data regarding flatlist');
     }
   }, []);
 
