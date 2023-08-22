@@ -1,17 +1,38 @@
 import React from 'react';
-import { Text, View, Button, Alert } from 'react-native';
+import { Text, View, Button, Alert, FlatList, TouchableOpacity } from 'react-native';
 import TestRenderer from 'react-test-renderer';
 
-// Your main app component
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
 function App() {
 
   React.useEffect(() => {
     if (root.findByType(Button)._fiber.pendingProps) {
       root._fiber.child.pendingProps.children[1].props.onPress();
       console.log(root._fiber.child.pendingProps.children[1].props, 'hello');
+      console.log(root._fiber.child.pendingProps.children[2].props, 'more data regarding flatlist');
       
     }
   }, []);
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => handleItemPress(item.title)}>
+      <Text>{item.title}</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -22,6 +43,11 @@ function App() {
           Alert.alert('Hello, This is a Button');
         }}
       />
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 }
@@ -29,10 +55,10 @@ function App() {
 // Use TestRenderer to render the App component
 const tree = TestRenderer.create(<App />);
 const root = tree.root;
-console.log(root.findByType(Button));
+// console.log(root.findByType(Button));
 
 // Access and interact with the rendered component
-const textElement = root.findByType(Button);
-console.log(textElement._fiber.pendingProps); // Should output: ['Hello, React Native!']
+// const textElement = root.findByType(Button);
+// console.log(textElement._fiber.pendingProps); // Should output: ['Hello, React Native!']
 
 export default App;
