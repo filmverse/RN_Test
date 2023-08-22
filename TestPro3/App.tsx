@@ -6,8 +6,8 @@ import TestRenderer from 'react-test-renderer';
 function App() {
 
   React.useEffect(() => {
-    if (textElement._fiber.pendingProps) {
-      textElement._fiber.pendingProps.onPress();
+    if (root.findByType(Button)._fiber.pendingProps) {
+      root.findByType(Button)._fiber.pendingProps.onPress();
     }
   }, []);
 
@@ -27,6 +27,7 @@ function App() {
 // Use TestRenderer to render the App component
 const tree = TestRenderer.create(<App />);
 const root = tree.root;
+console.log(root.findByType(Button));
 
 // Access and interact with the rendered component
 const textElement = root.findByType(Button);
