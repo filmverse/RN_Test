@@ -1,8 +1,6 @@
 import React from "react";
-import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert } from "react-native";
-import TestRenderer from 'react-test-renderer';
-
-const Separator = () => <View style={styles.separator} />;
+import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert, StatusBar } from "react-native";
+// import TestRenderer from 'react-test-renderer';
 
 const DATA = [
   {
@@ -19,7 +17,16 @@ const DATA = [
   },
 ];
 
+const Separator = () => <View style={styles.separator} />;
+
 const App = () => {
+    const renderItem = ({item}) => {
+        <View>
+            <TouchableOpacity style={styles.button} onPress={() => {Alert.alert(`Pressed item id: ${item.id}`)}}>
+                <Text>{item.title}</Text>
+            </TouchableOpacity>
+        </View>
+    };
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -30,7 +37,11 @@ const App = () => {
                     <Text>Hello Touchable Text</Text>
                 </TouchableOpacity>
                 <Separator />
-                <FlatList data={DATA} keyExtractor={item => item.id} />
+                <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
             </View>
         </SafeAreaView>
     )
@@ -38,6 +49,8 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
     justifyContent: 'center',
   },
   title: {
