@@ -32,7 +32,7 @@ function App() {
   const renderItem = ({ item }) => (
     <View>
       <TouchableOpacity onPress={() => Alert.alert(`Pressed: ${item.title}`)}>
-      <Text>{item.title}</Text>
+        <Text>{item.title}</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => Alert.alert(`Pressed: ${item.title}`)}>
         <Text>{item.title}</Text>
