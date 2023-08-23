@@ -24,15 +24,20 @@ function App() {
       root._fiber.child.pendingProps.children[1].props.onPress();
       console.log(root._fiber.child.pendingProps.children[1].props, 'hello');
       const dataProp = root._fiber.child.pendingProps.children[2].props.data[1];
-      root._fiber.child.pendingProps.children[2].props.renderItem({item: dataProp}).props.onPress();
-      console.log(root._fiber.child.pendingProps.children[2].props.renderItem({item: dataProp}), 'more data regarding flatlist');
+      root._fiber.child.pendingProps.children[2].props.renderItem({item: dataProp}).props.children[1].props.onPress();
+      console.log(root._fiber.child.pendingProps.children[2].props.renderItem({item: dataProp}).props.children[1].props, 'more data regarding flatlist');
     }
   }, []);
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => Alert.alert(`Pressed: ${item.title}`)}>
+    <View>
+      <TouchableOpacity onPress={() => Alert.alert(`Pressed: ${item.title}`)}>
       <Text>{item.title}</Text>
-    </TouchableOpacity>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => Alert.alert(`Pressed: ${item.title}`)}>
+        <Text>{item.title}</Text>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
