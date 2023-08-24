@@ -4,15 +4,15 @@ import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert
 
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    id: '1',
     title: 'First Item',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    id: '2',
     title: 'Second Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    id: '3',
     title: 'Third Item',
   },
 ];
@@ -21,11 +21,13 @@ const Separator = () => <View style={styles.separator} />;
 
 const App = () => {
     const renderItem = ({item}) => {
+      return (
         <View>
-            <TouchableOpacity style={styles.button} onPress={() => {Alert.alert(`Pressed item id: ${item.id}`)}}>
+            <TouchableOpacity style={styles.listButton} onPress={() => {Alert.alert(`Pressed item id: ${item.id}`)}}>
                 <Text>{item.title}</Text>
             </TouchableOpacity>
         </View>
+      )
     };
     return (
         <SafeAreaView style={styles.container}>
@@ -49,8 +51,6 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
     justifyContent: 'center',
   },
   title: {
@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#380C2A',
     padding: 10,
+  },
+  listButton: {
+    alignItems: 'center',
+    backgroundColor: '#171421',
+    padding: 8,
+    marginVertical: 1,
   },
   separator: {
     marginVertical: 8,
