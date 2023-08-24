@@ -5,14 +5,17 @@ import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert
 const DATA = [
   {
     id: '1',
+    text: 'Test First Item',
     title: 'First Item',
   },
   {
     id: '2',
+    text: 'Test Second Item',
     title: 'Second Item',
   },
   {
     id: '3',
+    text: 'Test Third Item',
     title: 'Third Item',
   },
 ];
@@ -23,6 +26,7 @@ const App = () => {
     const renderItem = ({item}) => {
       return (
         <View>
+          <Text>{item.text}</Text>
             <TouchableOpacity style={styles.listButton} onPress={() => {Alert.alert(`Pressed item id: ${item.id}`)}}>
                 <Text>{item.title}</Text>
             </TouchableOpacity>
