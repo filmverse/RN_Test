@@ -1,6 +1,6 @@
 import React from "react";
 import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert, StatusBar, ScrollView } from "react-native";
-// import TestRenderer from 'react-test-renderer';
+import TestRenderer from 'react-test-renderer';
 
 const DATA = [
   {
@@ -25,50 +25,50 @@ const DATA = [
       },
     ]
   },
-  {
-    id: '002',
-    text: 'Second Text FlatList First Item',
-    title: 'Second FlatList First Item',
-    NestedDATA: [
-      {
-        id: '002001',
-        text: 'Second Text FlatList NestedList First Item',
-        title: 'Second FlatList NestedList First Item',
-      },
-      {
-        id: '002002',
-        text: 'Second Text FlatList NestedList First Item',
-        title: 'Second FlatList NestedList Second Item',
-      },
-      {
-        id: '002003',
-        text: 'Second Text FlatList NestedList First Item',
-        title: 'Second FlatList NestedList Third Item',
-      },
-    ]
-  },
-  {
-    id: '003',
-    text: 'Third Text FlatList First Item',
-    title: 'Third FlatList First Item',
-    NestedDATA: [
-      {
-        id: '003001',
-        text: 'Third Text FlatList NestedList First Item',
-        title: 'Third FlatList NestedList First Item',
-      },
-      {
-        id: '003002',
-        text: 'Third Text FlatList NestedList First Item',
-        title: 'Third FlatList NestedList Second Item',
-      },
-      {
-        id: '003003',
-        text: 'Third Text FlatList NestedList First Item',
-        title: 'Third FlatList NestedList Third Item',
-      },
-    ]
-  },
+  // {
+  //   id: '002',
+  //   text: 'Second Text FlatList First Item',
+  //   title: 'Second FlatList First Item',
+  //   NestedDATA: [
+  //     {
+  //       id: '002001',
+  //       text: 'Second Text FlatList NestedList First Item',
+  //       title: 'Second FlatList NestedList First Item',
+  //     },
+  //     {
+  //       id: '002002',
+  //       text: 'Second Text FlatList NestedList First Item',
+  //       title: 'Second FlatList NestedList Second Item',
+  //     },
+  //     {
+  //       id: '002003',
+  //       text: 'Second Text FlatList NestedList First Item',
+  //       title: 'Second FlatList NestedList Third Item',
+  //     },
+  //   ]
+  // },
+  // {
+  //   id: '003',
+  //   text: 'Third Text FlatList First Item',
+  //   title: 'Third FlatList First Item',
+  //   NestedDATA: [
+  //     {
+  //       id: '003001',
+  //       text: 'Third Text FlatList NestedList First Item',
+  //       title: 'Third FlatList NestedList First Item',
+  //     },
+  //     {
+  //       id: '003002',
+  //       text: 'Third Text FlatList NestedList First Item',
+  //       title: 'Third FlatList NestedList Second Item',
+  //     },
+  //     {
+  //       id: '003003',
+  //       text: 'Third Text FlatList NestedList First Item',
+  //       title: 'Third FlatList NestedList Third Item',
+  //     },
+  //   ]
+  // },
 ];
 
 const Separator = () => <View style={styles.separator} />;
@@ -156,5 +156,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
+
+const tree = TestRenderer.create(<App />);
+const root = tree.root;
+
+console.log(root._fiber.child.pendingProps.children);
 
 export default App;
