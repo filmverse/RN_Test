@@ -1,5 +1,5 @@
 import React from "react";
-import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert, StatusBar, ScrollView } from "react-native";
+import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert } from "react-native";
 import TestRenderer from 'react-test-renderer';
 
 const DATA = [
@@ -101,7 +101,7 @@ const App = () => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView contentContainerStyle={styles.scrollContent}>
+            <View>
                 <Separator />
                 <Text style={styles.title}>Hello Text</Text>
                 <Separator />
@@ -111,12 +111,11 @@ const App = () => {
                 <Separator />
                 <FlatList
                     data={DATA}
-                    scrollEnabled={true}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                 />
                 <Separator />
-            </ScrollView>
+            </View>
         </SafeAreaView>
     )
 };
@@ -124,8 +123,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  scrollContent: {
     justifyContent: 'center',
     alignItems: 'center',
   },
