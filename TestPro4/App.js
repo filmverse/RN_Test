@@ -1,5 +1,5 @@
 import React from "react";
-import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert } from "react-native";
+import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert, Button } from "react-native";
 import TestRenderer from 'react-test-renderer';
 
 const DATA = [
@@ -157,6 +157,8 @@ const styles = StyleSheet.create({
 const tree = TestRenderer.create(<App />);
 const root = tree.root;
 
-console.log(root._fiber.child.pendingProps.children);
+// console.log(root._fiber.child.pendingProps.children);
+
+console.log(root.findAllByType(TouchableOpacity)._fiber, 'last log');
 
 export default App;
