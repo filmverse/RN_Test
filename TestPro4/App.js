@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, SafeAreaView, TouchableOpacity, Text, FlatList, StyleSheet, Alert, Button } from "react-native";
 import TestRenderer from 'react-test-renderer';
 
@@ -74,6 +74,11 @@ const DATA = [
 const Separator = () => <View style={styles.separator} />;
 
 const App = () => {
+  useEffect(() => {
+    if (flatTestRenderList) {
+      flatTestRenderList()
+    }
+  }, []);
     const renderItem = ({item}) => {
       return (
         <View>
@@ -157,8 +162,10 @@ const styles = StyleSheet.create({
 const tree = TestRenderer.create(<App />);
 const root = tree.root;
 
-// console.log(root._fiber.child.pendingProps.children);
+const flatTest = root.findAllByType(TouchableOpacity).map(ftt => ftt._fiber.child.pendingProps)
+const flatTestRender = flatTest.map(fttr => fttr.onPress)
+const flatTestRenderList = flatTestRender[1]
 
-console.log(root.findAllByType(TouchableOpacity)._fiber, 'last log');
+console.log(flatTestRenderList, 'last log');
 
 export default App;
