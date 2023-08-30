@@ -11,6 +11,7 @@ function HomeScreen({ navigation }) {
         title="Go to Details"
         onPress={() => navigation.navigate('Details', {
           testProp: testProp,
+          otherParam: 'anything you want here',
         })}
       />
     </View>
