@@ -14,7 +14,7 @@ function DetailsScreen({ route, navigation }) {
         title="Go to Details... again"
         onPress={() => navigation.popToTop()}
       />
-      {/* <Button title='test route button' onPress={myTestProp[1]()} /> */}
+      <Button title='test route button' onPress={myTestProp[1]()} />
     </View>
   );
 }
