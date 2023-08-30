@@ -3,6 +3,9 @@ import React from 'react'
 
 function DetailsScreen({ route, navigation }) {
   const {testProp, otherParam} = route.params;
+  console.log(typeof(testProp));
+  const myTestProp = testProp.findAllByType(Button).map(ftt => ftt._fiber.child.pendingProps.onPress)
+  console.log(myTestProp[1]);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={styles.textColor}>Details Screen</Text>
@@ -11,7 +14,7 @@ function DetailsScreen({ route, navigation }) {
         title="Go to Details... again"
         onPress={() => navigation.popToTop()}
       />
-      <Button title='test route button' onPress={testProp[1]()} />
+      {/* <Button title='test route button' onPress={myTestProp[1]()} /> */}
     </View>
   );
 }

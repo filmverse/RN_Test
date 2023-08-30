@@ -10,7 +10,7 @@ function HomeScreen({ navigation }) {
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details', {
-          testProp: testProp,
+          testProp: root,
           otherParam: 'anything you want here',
         })}
       />
