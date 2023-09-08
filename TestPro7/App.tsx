@@ -1,19 +1,34 @@
 import React from 'react';
-import {View, Button, Text, Alert, StyleSheet} from 'react-native';
+import { View, Button, Text, Alert, StyleSheet } from 'react-native';
 import TestRenderer from 'react-test-renderer';
-import SegmentedControl from '@react-native-segmented-control/segmented-control';
 import CheckBox from '@react-native-community/checkbox';
+import RadioGroup from 'react-native-radio-buttons-group';
 
 const Separator = () => <View style={styles.seprator} />;
 
 const App = () => {
   const [toggleCheckBox, setToggleCheckBox] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState(undefined);
-  const [value, setValue] = React.useState('Unselected');
+  const radioButtons = React.useMemo(
+    () => [
+      {
+        id: '1', // acts as primary key, should be unique and non-empty string
+        label: 'Option 1',
+        value: 'option1',
+      },
+      {
+        id: '2',
+        label: 'Option 2',
+        value: 'option2',
+      },
+    ],
+    [],
+  );
+  const [selectedId, setSelectedId] = React.useState();
+
   React.useEffect(() => {
     if (root._fiber.child.pendingProps) {
-      root._fiber.child.pendingProps.children[2].props.onValueChange();
-      console.log(root._fiber.child.pendingProps.children[2].props);
+      root._fiber.child.pendingProps.children[6].props.onPress(root._fiber.child.pendingProps.children[6].props.radioButtons[1]);
+      console.log(root._fiber.child.pendingProps.children[6].props);
     }
   }, []);
   return (
@@ -31,11 +46,10 @@ const App = () => {
         onPress={() => setToggleCheckBox(!toggleCheckBox)}
       />
       <Separator />
-      <SegmentedControl
-        values={['One', 'Two', 'Three']}
-        selectedIndex={selectedIndex}
-        onChange={event => setSelectedIndex(event.nativeEvent.selectedSegmentIndex)}
-        onValueChange={val => setValue(val)}
+      <RadioGroup
+        radioButtons={radioButtons}
+        onPress={setSelectedId}
+        selectedId={selectedId}
       />
     </View>
   );
