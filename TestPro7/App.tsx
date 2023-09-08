@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Button, Text, Alert, StyleSheet } from 'react-native';
+import { View, Button, Text, ToastAndroid, StyleSheet } from 'react-native';
 import TestRenderer from 'react-test-renderer';
 import CheckBox from '@react-native-community/checkbox';
-import RadioGroup from 'react-native-radio-buttons-group';
+import { RadioButton } from 'react-native-paper';
 
 const Separator = () => <View style={styles.seprator} />;
 
@@ -23,14 +23,18 @@ const App = () => {
     ],
     [],
   );
-  const [selectedId, setSelectedId] = React.useState();
+  const [checked, setChecked] = React.useState('');
 
   React.useEffect(() => {
     if (root._fiber.child.pendingProps) {
-      root._fiber.child.pendingProps.children[6].props.onPress(root._fiber.child.pendingProps.children[6].props.radioButtons[1]);
-      console.log(root._fiber.child.pendingProps.children[6].props);
+      console.log(root._fiber.child.pendingProps.children[5].props.children);
+      console.log(root._fiber.child.pendingProps.children[6].props.children[1].props);
+      root._fiber.child.pendingProps.children[6].props.children[1].props.onPress();
     }
-  }, []);
+    console.log(checked);
+    ToastAndroid.show(checked, ToastAndroid.SHORT);
+  }, [checked]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Hello Text for Testing</Text>
@@ -46,11 +50,20 @@ const App = () => {
         onPress={() => setToggleCheckBox(!toggleCheckBox)}
       />
       <Separator />
-      <RadioGroup
-        radioButtons={radioButtons}
-        onPress={setSelectedId}
-        selectedId={selectedId}
-      />
+      <Text>Radio First Button Accept
+        <RadioButton
+          value="Accept"
+          onPress={() => setChecked('first')}
+          status={checked === 'first' ? 'checked' : 'unchecked'}
+        />
+      </Text>
+      <Text>Radio Second Button Decline
+        <RadioButton
+          value="Decline"
+          onPress={() => setChecked('second')}
+          status={checked === 'second' ? 'checked' : 'unchecked'}
+        />
+      </Text>
     </View>
   );
 };
