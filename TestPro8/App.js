@@ -10,9 +10,11 @@ const App = () => {
 
   useEffect(() => {
     if (root._fiber.child.pendingProps.children[0].props.children[0]) {
-      const rttValue = root._fiber.child.pendingProps.children[0].props.children[0].props.value;
-      console.log(rttValue);
-      root._fiber.child.pendingProps.children[0].props.children[0].props.onValueChange(setChecked(!rttValue));
+      setTimeout(() => {
+        const rttValue = root._fiber.child.pendingProps.children[0].props.children[0].props.value;
+        console.log(rttValue);
+        root._fiber.child.pendingProps.children[0].props.children[0].props.onValueChange(setChecked(!rttValue));
+      }, 2000);
     }
   }, []);
 
