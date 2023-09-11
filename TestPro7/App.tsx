@@ -33,6 +33,8 @@ const App = () => {
       root._fiber.child.pendingProps.children[2].props.children[1].props.onPress();
       console.log(root._fiber.child.pendingProps.children[1].props.children[1].props.status, "log in effect");
       console.log(root._fiber.child.pendingProps.children[2].props.children[1].props.status, "log in effect");
+      console.log(root._fiber.child.pendingProps.children[1].props.children[1].props, "log in effect");
+      console.log(root._fiber.child.pendingProps.children[2].props.children[1].props, "log in effect");
     }
     // console.log(checked);
     ToastAndroid.show(checked, ToastAndroid.SHORT);
