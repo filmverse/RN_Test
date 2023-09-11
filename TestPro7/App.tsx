@@ -23,21 +23,24 @@ const App = () => {
     ],
     [],
   );
-  const [checked, setChecked] = React.useState('');
+  const [checked, setChecked] = React.useState('first');
 
   React.useEffect(() => {
     if (root._fiber.child.pendingProps) {
-      console.log(root._fiber.child.pendingProps.children[5].props.children);
-      console.log(root._fiber.child.pendingProps.children[6].props.children[1].props);
-      root._fiber.child.pendingProps.children[6].props.children[1].props.onPress();
+      // console.log(root._fiber.child.pendingProps.children[5].props.children);
+      // console.log(root._fiber.child.pendingProps.children[6].props.children[1].props);
+      // root._fiber.child.pendingProps.children[0].props.children[1].props.onPress();
+      root._fiber.child.pendingProps.children[2].props.children[1].props.onPress();
+      console.log(root._fiber.child.pendingProps.children[1].props.children[1].props.status, "log in effect");
+      console.log(root._fiber.child.pendingProps.children[2].props.children[1].props.status, "log in effect");
     }
-    console.log(checked);
+    // console.log(checked);
     ToastAndroid.show(checked, ToastAndroid.SHORT);
-  }, [checked]);
-
+  }, []);
+  console.log(checked);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello Text for Testing</Text>
+      {/* <Text style={styles.title}>Hello Text for Testing</Text>
       <Separator />
       <CheckBox
         disabled={false}
@@ -48,7 +51,7 @@ const App = () => {
       <Button
         title="Toggle the Value Below"
         onPress={() => setToggleCheckBox(!toggleCheckBox)}
-      />
+      /> */}
       <Separator />
       <Text>Radio First Button Accept
         <RadioButton
