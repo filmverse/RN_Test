@@ -11,32 +11,34 @@ import {
 import TestRenderer from 'react-test-renderer';
 
 const App = () => {
-  const [text, setText] = React.useState("");
   React.useEffect(() => {
-    flatTestRenderList();
+    if (flatTestRenderList) {
+      setTimeout(() => {
+        flatTestRenderList();
+      }, 2000);
+    }
   }, []);
-  console.log(text);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Payment App</Text>
       <Text style={styles.text}>Test App</Text>
       <Text style={styles.text1}>Choose your payment method</Text>
       <ScrollView style={styles.scrollView} horizontal={true}>
-        <Button title='Credit Card' onPress={() => {setText("Credit Card")}} />
-        <Button title='Debit Card' onPress={() => {setText("Debit Card")}} />
-        <Button title='PayME' onPress={() => {setText("PayME")}} />
-        <Button title='BlazorPay' onPress={() => {setText("BlazorPay")}} />
-        <Button title='IndiaPa' onPress={() => {setText("IndiaPa")}} />
-        <Button title='MPay' onPress={() => {setText("MPay")}} />
-        <Button title='PhoneDe' onPress={() => {setText("PhoneDe")}} />
-        <Button title='VPI' onPress={() => {setText("VPI")}} />
-        <Button title='Internet Banking' onPress={() => {setText("Internet Banking")}} />
-        <Button title='Mobile Banking' onPress={() => {setText("Mobile Banking")}} />
-        <Button title='Other' onPress={() => {setText("Other")}} />
+        <Button title='Credit Card' onPress={() => Alert.alert("Credit Card")} />
+        <Button title='Debit Card' onPress={() => Alert.alert("Debit Card")} />
+        <Button title='PayME' onPress={() => Alert.alert("PatME")} />
+        <Button title='BlazorPay' onPress={() => Alert.alert("BlazorPay")} />
+        <Button title='IndiaPa' onPress={() => Alert.alert("IndiaPa")} />
+        <Button title='MPay' onPress={() => Alert.alert("MPay")} />
+        <Button title='PhoneDe' onPress={() => Alert.alert("PhoneDe")} />
+        <Button title='VPI' onPress={() => Alert.alert("VPI")} />
+        <Button title='Internet Banking' onPress={() => Alert.alert("Internet Banking")} />
+        <Button title='Mobile Banking' onPress={() => Alert.alert("Mobile Banking")} />
+        <Button title='Other' onPress={() => Alert.alert("Other Payment Method")} />
       </ScrollView>
-      <Button title={text} onPress={() => Alert.alert(text)} />
       <Text style={styles.text1}>We are always their for you.</Text>
       <Text style={styles.text}>Pay safely with us.</Text>
+      <Text style={styles.text}>Your Identity is protected with us.</Text>
     </SafeAreaView>
   );
 };
