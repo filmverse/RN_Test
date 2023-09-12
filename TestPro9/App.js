@@ -22,8 +22,8 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Payment App</Text>
       <Text style={styles.text}>Test App</Text>
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.text1}>Choose your payment method</Text>
+      <Text style={styles.text1}>Choose your payment method</Text>
+      <ScrollView style={styles.scrollView} horizontal={true}>
         <Button title='Credit Card' onPress={() => Alert.alert("Credit Card")} />
         <Button title='Debit Card' onPress={() => Alert.alert("Debit Card")} />
         <Button title='PayME' onPress={() => Alert.alert("PatME")} />
@@ -35,8 +35,8 @@ const App = () => {
         <Button title='Internet Banking' onPress={() => Alert.alert("Internet Banking")} />
         <Button title='Mobile Banking' onPress={() => Alert.alert("Mobile Banking")} />
         <Button title='Other' onPress={() => Alert.alert("Other Payment Method")} />
-        <Text style={styles.text1}>We are always their for you.</Text>
       </ScrollView>
+      <Text style={styles.text1}>We are always their for you.</Text>
       <Text style={styles.text}>Pay safely with us.</Text>
       <Text style={styles.text}>Your Identity is protected with us.</Text>
     </SafeAreaView>
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: 'pink',
-    marginHorizontal: 40,
-    marginVertical: 40,
+    marginHorizontal: 1,
+    marginVertical: 100,
   },
   text: {
     fontSize: 42,
