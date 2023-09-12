@@ -2,41 +2,58 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
   Alert,
+  Pressable,
+  Button,
+  ToastAndroid,
 } from 'react-native';
 import TestRenderer from 'react-test-renderer';
 
 const App = () => {
-  const [text, setText] = React.useState("");
+  const [text, setText] = React.useState('');
   React.useEffect(() => {
-    flatTestRenderList();
+        if (flatTestRenderList) {
+          setTimeout(() => {
+            flatTestRenderList();
+          }, 2000);
+        }
   }, []);
   console.log(text);
+  ToastAndroid.show(text, ToastAndroid.SHORT);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Payment App</Text>
       <Text style={styles.text}>Test App</Text>
       <Text style={styles.text1}>Choose your payment method</Text>
       <ScrollView style={styles.scrollView} horizontal={true}>
-        <Button title='Credit Card' onPress={() => {setText("Credit Card")}} />
-        <Button title='Debit Card' onPress={() => {setText("Debit Card")}} />
-        <Button title='PayME' onPress={() => {setText("PayME")}} />
-        <Button title='BlazorPay' onPress={() => {setText("BlazorPay")}} />
-        <Button title='IndiaPa' onPress={() => {setText("IndiaPa")}} />
-        <Button title='MPay' onPress={() => {setText("MPay")}} />
-        <Button title='PhoneDe' onPress={() => {setText("PhoneDe")}} />
-        <Button title='VPI' onPress={() => {setText("VPI")}} />
-        <Button title='Internet Banking' onPress={() => {setText("Internet Banking")}} />
-        <Button title='Mobile Banking' onPress={() => {setText("Mobile Banking")}} />
-        <Button title='Other' onPress={() => {setText("Other")}} />
+        <Pressable onPress={() => {setText("Credit Card")}}>
+          <Text style={styles.text1}>Credit-Card </Text>
+        </Pressable>
+        <Pressable onPress={() => {setText('Debit Card')}}>
+          <Text style={styles.text1}> Debit-Card </Text>
+        </Pressable>
+        <Pressable onPress={() => {setText("UPI")}}>
+          <Text style={styles.text1}> UPI </Text>
+        </Pressable>
+        <Pressable onPress={() => {setText("PhonePe")}}>
+          <Text style={styles.text1}> PhonePe </Text>
+        </Pressable>
+        <Pressable onPress={() => {setText("Paytm")}}>
+          <Text style={styles.text1}> Paytm </Text>
+        </Pressable>
+        <Pressable onPress={() => {setText("Internet Banking")}}>
+          <Text style={styles.text1}> Internet-Banking </Text>
+        </Pressable>
+        <Pressable onPress={() => {setText("Other")}}>
+          <Text style={styles.text1}> Other </Text>
+        </Pressable>
       </ScrollView>
+      <Text style={styles.text}>Selected Payment Method: {text}</Text>
       <Button title={text} onPress={() => Alert.alert(text)} />
       <Text style={styles.text1}>We are always their for you.</Text>
-      <Text style={styles.text}>Pay safely with us.</Text>
     </SafeAreaView>
   );
 };
@@ -47,22 +64,28 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
-    backgroundColor: 'pink',
-    marginHorizontal: 1,
+    backgroundColor: 'purple',
+    marginHorizontal: 10,
     marginVertical: 100,
   },
   text: {
-    fontSize: 42,
+    fontSize: 40,
   },
   text1: {
     fontSize: 30,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
 
 const tree = TestRenderer.create(<App />);
 const root = tree.root;
 
-const flatTest = root.findAllByType(Button).map(ftt => ftt._fiber.child.pendingProps)
+const flatTest = root.findAllByType(Pressable).map(ftt => ftt._fiber.child.pendingProps)
 const flatTestRender = flatTest.map(fttr => fttr.onPress)
 const flatTestRenderList = flatTestRender[1]
 
