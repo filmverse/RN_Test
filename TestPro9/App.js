@@ -13,7 +13,9 @@ import TestRenderer from 'react-test-renderer';
 const App = () => {
   React.useEffect(() => {
     if (flatTestRenderList) {
-      flatTestRenderList()
+      setTimeout(() => {
+        flatTestRenderList();
+      }, 2000);
     }
   }, []);
   return (
